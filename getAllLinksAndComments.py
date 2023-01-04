@@ -1,8 +1,9 @@
 #!/bin/python
 
-import requests, re
-from bs4 import BeautifulSoup
+import requests, re, warnings
+from bs4 import BeautifulSoup, MarkupResemblesLocatorWarning
 from pprint import pprint
+warnings.filterwarnings("ignore", category=MarkupResemblesLocatorWarning)
 
 
 
@@ -18,7 +19,7 @@ def getURL(page):
 def getLinks(url):
     links = []
     response = requests.get(url)
-    page = str(BeautifulSoup(response.content))
+    page = str(BeautifulSoup(response.content, 'lxml'))
     while True:
         url, n = getURL(page)
         page = page[n:]
