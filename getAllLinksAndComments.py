@@ -1,5 +1,5 @@
 #!/bin/python
-import requests, re, warnings, sys
+import requests, regex, warnings, sys
 from bs4 import BeautifulSoup, MarkupResemblesLocatorWarning
 warnings.filterwarnings("ignore", category=MarkupResemblesLocatorWarning)
 
@@ -55,7 +55,7 @@ def getAllComments(url, get_links=False):
         if current_url not in comments.keys():
             comments[current_url] = []
         res = requests.get(current_url)
-        matches = re.findall(r"""(<!--(.*?)-->)|(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|(//.*)|(^'.*$)|(^#.*$)""", res.text)
+        matches = regex.findall(r"""(\<\!\-\-(?:.|\n|\r)*?-->|(\/\*[\w\'\s\r\n\*]*\*\/)|(\/\/[\w\s\']*)|(\<![\-\-\s\w\>\/]*\>))""", res.text)
         for match in matches:
             for m in match:
                 if m:
