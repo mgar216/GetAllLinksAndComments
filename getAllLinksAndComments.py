@@ -67,11 +67,15 @@ def getAllComments(url, get_links=False):
     return comments
 
 
-url = "http://192.168.245.125:8080/" # Change this to site URL
+url = "http://<ip>:<port>/" # Change this to site URL and Port
 comments, links = getAllComments(url, get_links=True)
 print('All Site Links:')
-pprint(links)
+for i in links:
+    print('\t'+str(i))
 print('\n')
 print('All Site Comments:')
-pprint(comments)
+for k,v in comments.items():
+    print(k)
+    for x in v:
+        print('\t'+str(x))
 print('\n')
