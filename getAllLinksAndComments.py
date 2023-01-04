@@ -1,8 +1,6 @@
 #!/bin/python
-
-import requests, re, warnings
+import requests, re, warnings, sys
 from bs4 import BeautifulSoup, MarkupResemblesLocatorWarning
-from pprint import pprint
 warnings.filterwarnings("ignore", category=MarkupResemblesLocatorWarning)
 
 
@@ -66,17 +64,24 @@ def getAllComments(url, get_links=False):
         return [comments, all_links]
     return comments
 
+def main():
+    if len(sys.argv) != 2 or ('http' not in sys.argv[1]) or (':' not in sys.argv[1]) or ('://' not in sys.argv[1]) or not (sys.argv[1].endswith('/')):
+        print('This script only takes one argument, the url -- it should be formatted like this: http://www.thissite.com:80/ or http://192.168.0.1:8080/')
+        return 0
 
-url = "http://<ip>:<port>/" # Change this to site URL and Port
-comments, links = getAllComments(url, get_links=True)
-print('All Site Links:')
-for i in links:
-    print('\t'+str(i))
-print('\n')
-print('All Site Comments:')
-for k,v in comments.items():
-    print(k)
-    for x in v:
-        print('\t'+str(x))
-print('\n')
+    url = str(sys.argv[1])
+    comments, links = getAllComments(url, get_links=True)
+    print('\n')
+    print('All Site Links:')
+    for i in links:
+        print('\t'+str(i))
+    print('\n')
+    print('All Site Comments:')
+    for k,v in comments.items():
+        print(k)
+        for x in v:
+            print('\t'+str(x))
+    print('\n')
 
+if __name__ == '__main__':
+    main()
