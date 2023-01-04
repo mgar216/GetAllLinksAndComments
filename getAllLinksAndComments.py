@@ -2,6 +2,7 @@
 
 import requests, re
 from bs4 import BeautifulSoup
+from pprint import pprint
 
 
 
@@ -65,11 +66,11 @@ def getAllComments(url, get_links=False):
     return comments
 
 
-url = "http://<ip>:<port>/" # Change this to site URL
+url = "http://192.168.245.125:8080/" # Change this to site URL
 comments, links = getAllComments(url, get_links=True)
 print('All Site Links:')
-print(links)
+pprint(links)
 print('\n')
 print('All Site Comments:')
-print(comments)
+pprint(comments)
 print('\n')
