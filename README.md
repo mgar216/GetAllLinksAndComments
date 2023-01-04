@@ -1,4 +1,4 @@
-## Recursively Enumerate all Links and Comments in Site
+## Recursively Enumerate all Links and Comments in Site -- (L)ink (A)nd (C)omment (E)xtractor
 
 Extracts all links and comments recursively from a URL -- useful for recon and enumeration of a site, including important comments hidden away on the site itself.
 
