@@ -67,6 +67,9 @@ def getAllComments(url, get_links=False):
 
 url = "http://<ip>:<port>/" # Change this to site URL
 comments, links = getAllComments(url, get_links=True)
+print('All Site Links:')
 print(links)
 print('\n')
+print('All Site Comments:')
 print(comments)
+print('\n')
